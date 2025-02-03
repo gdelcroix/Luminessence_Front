@@ -21,7 +21,7 @@ function Accueil({ scrollToSection }) {
             <Stack gap={2} className='w-100 mt-2 mx-auto'>
               <div className='bulle p-3 m-1'>
                 <h1 className='slide-down'>
-                  <p>Prenez soin de vous :</p> Luminescence du savoir
+                  <p>Prenez soin de vous :</p> Luminessence du savoir
                 </h1>
               </div>
               <div className='d-flex bulle p-4 m-1 flex-row align-content-start'>
