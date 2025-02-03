@@ -1,0 +1,215 @@
+#root {
+  min-width: 90vw;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0.5vh;
+  text-align: center;
+  background-color: #deceb3;
+}
+body,
+html {
+  font-family: 'Roboto', 'playfair display', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #deceb3;
+}
+.h1 {
+  font-family: 'playfair display', sans-serif;
+}
+.card{
+  background-color: #c79a6c;
+}
+.bloc0 {
+  border-radius: 40px;
+  min-height: 80vh;
+  /* background-color: rgb(0, 255, 34); */
+}
+.bloc1 {
+  border-radius: 40px;
+  min-height: 80vh;
+  /* background-color: cyan; */
+}
+.bulle {
+  border-radius: 40px !important;
+  border-color: #6b5137 !important;
+  border-style: solid !important;
+}
+.content-container {
+  flex-grow: 1;
+  overflow: auto;
+}
+.carousel-inner {
+  display: flex !important;
+  flex-direction: row;
+}
+.carousel-item {
+  img {
+    border-radius: 30px;
+    max-height: 35vh;
+    max-width: 30vw;
+  }
+}
+.carousel-caption {
+  max-width: 65vw;
+}
+
+.deco-btn{
+  color:#dc3545 ;
+  background-color: #fff1c2;
+  border-color: #dc3545;
+}
+.deco-btn:hover{
+  color:#fff1c2 ;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.hero {
+  border-radius: 40px !important;
+  border-color: #6b5137 !important;
+  border-style: solid !important;
+  display: flex;
+  align-items: stretch;
+}
+.img {
+  overflow: hidden;
+  display: flex;
+}
+.navbar-container {
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+  background-color: #deceb3;
+  transition: height 0.3s ease-in-out;
+}
+.navbar-container.expanded {
+  height: 60px;
+}
+.navbar-container.collapsed {
+  height: 0;
+}
+.navbar-btn {
+  min-width: 13.2%;
+  background-color: rgba(107, 81, 55, 00);
+  color: #6b5137;
+  border-color: #6b5137;
+}
+.navbar-btn:hover {
+  min-width: 13.2%;
+  /* transform: scale(1.2); */
+  background-color: #6b5137 !important;
+  color: #fff1c2 !important;
+  border-color: #6b5137 !important;
+  /* border-radius: 20px !important; */
+}
+.navbar-btn.btn-outline-primary:active {
+  min-width: 13.2%;
+  background-color: #fff1c2 !important;
+  color: #6b5137 !important;
+  border-color: #6b5137 !important;
+}
+.roundedleft {
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 40px 0 0 40px !important;
+}
+.roundedright {
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0 40px 40px 0 !important;
+}
+.top-btn-position {
+position: fixed;
+bottom: 15px;
+right: 20px;
+}
+.top-btn-style {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #6b5137;
+  color: #6b5137;
+  background-color: transparent;
+}
+.top-btn-style:hover {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: #fff;
+  background-color: #6b5137;
+}
+.toggle-button {
+  position: absolute;
+  top: 100%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: #ddd;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.logo {
+  padding: 0em 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.HeaderContainer {
+  background-color: #c79a6c;
+}
+
+.btn-check:checked + .btn.navbar-btn {
+  min-width: 13.2%;
+  background-color: #6b5137 !important;
+  color: #e8b931 !important;
+  border-color: #6b5137 !important;
+}
+
+.login-btn {
+  color: #6b5137;
+  background-color: #fff1c2;
+  border-color: #6b5137;
+}
+
+.login-btn:hover {
+  color: #fff1c2;
+  background-color: #6b5137;
+  border-color: #6b5137;
+}
+
+.register-btn {
+  background-color: #e8b931;
+  border-color: #6b5137;
+}
+.register-btn:hover {
+  background-color: #6b5137;
+  border-color: #e8b931;
+}
+.slide-down {
+  animation: slideDown 1s ease-in-out forwards;
+}
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+}
