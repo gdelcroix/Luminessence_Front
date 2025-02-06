@@ -1,10 +1,13 @@
-import React, { Suspense, lazy, useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquareCaretDown,faSquareCaretUp,faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
+
 import NavBar from '../composants/NavBar';
 import Footer from '../composants/Footer';
-import { Container } from 'react-bootstrap';
-import AuthContext from '../context/AuthContext';
-import { FaRegCaretSquareDown, FaRegCaretSquareUp, FaAngleDoubleUp } from 'react-icons/fa';
-import { useIsVisible } from '../composants/useIsVisible'; // Importez le hook personnalisé
+import { useIsVisible } from '../composants/useIsVisible';
+
+import context from '../context/Context';
 
 import Accueil from './AccueilPage';
 import Massages from './MassagePage';
@@ -18,6 +21,7 @@ function Home() {
   const [nbVisible, setNbVisible] = useState(true);
   const [isObserverActive, setIsObserverActive] = useState(true);
   const [showScrollBtn, setShowScrollBtn] = useState(false);
+  const { currentSection, setCurrentSection } = useContext(context);
 
   const refAccueil = useRef(null);
   const refMassages = useRef(null);
@@ -26,8 +30,6 @@ function Home() {
   const refBoutique = useRef(null);
   const refAPropos = useRef(null);
   const refContact = useRef(null);
-
-  const { currentSection, setCurrentSection } = useContext(AuthContext);
 
   useIsVisible(refAccueil, setCurrentSection, isObserverActive);
   useIsVisible(refMassages, setCurrentSection, isObserverActive);
@@ -44,23 +46,22 @@ function Home() {
   }, [currentSection, setCurrentSection]);
 
   const scrollToSection = (valeur) => {
-    setIsObserverActive(false); // Désactiver l'observateur
+    setIsObserverActive(false); // Désactive l'observateur
 
     const scrollToElement = (ref) => {
       if (ref.current) {
         ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-        // Vérifier si le bouton ScrollToTop doit être visible
-        if (ref.current.offsetTop > 300) {
+        // Vérifie si le bouton ScrollToTop doit être visible (le haut de la page est + élevé le top du 2eme écran)
+        if (ref.current.offsetTop > (refMassages.current.offsetTop-10)) {
           setShowScrollBtn(true);
         } else {
           setShowScrollBtn(false);
         }
 
-        // Réactiver l'observateur après le défilement
+        // Réactive l'observateur après le défilement, par un compteur de 500ms
         setTimeout(() => {
           setIsObserverActive(true);
-        }, 500); // Ajustez le délai si nécessaire
+        }, 500);
       }
     };
     // switch pour déclencher le scroll vers la section attendue
@@ -122,7 +123,7 @@ function Home() {
                 className='btn btn-sm btn-outline-secondary position-absolute end-0 bottom-0 m-2'
                 onClick={changeNavbar}
               >
-                <FaRegCaretSquareUp />
+                <FontAwesomeIcon icon={faSquareCaretUp}/>
               </button>
             </>
           ) : (
@@ -130,7 +131,7 @@ function Home() {
               className='btn btn-sm btn-outline-secondary position-absolute end-0 top-0 m-2'
               onClick={changeNavbar}
             >
-              <FaRegCaretSquareDown />
+              <FontAwesomeIcon icon={faSquareCaretDown} />
             </button>
           )}
         </div>{' '}
@@ -138,31 +139,31 @@ function Home() {
           className='content-container'
           style={{ marginTop: nbVisible ? '85px' : '0px', overflow: 'auto', height: '100vh' }}
         >
-          <div id='accueil' ref={refAccueil} section='accueil'>
+          <div id='accueil' ref={refAccueil} className='bloc' section='accueil'>
             <Accueil />
           </div>
-          <div id='massagesAyurvediques' className='bloc1 mx-5' ref={refMassages} section='massagesAyurvediques'>
+          <div id='massagesAyurvediques' className='bloc' ref={refMassages} section='massagesAyurvediques'>
             <Massages />
           </div>
-          <div id='formationEstimeDeSoi' className='bloc0' ref={refFormation} section='formationEstimeDeSoi'>
+          <div id='formationEstimeDeSoi' className='bloc' ref={refFormation} section='formationEstimeDeSoi'>
             <Estime />
           </div>
-          <div id='ateliersBienEtre' className='bloc1' ref={refAteliers} section='ateliersBienEtre'>
+          <div id='ateliersBienEtre' className='bloc' ref={refAteliers} section='ateliersBienEtre'>
             <BienEtre />
           </div>
-          <div id='boutique' className='bloc0' ref={refBoutique} section='boutique'>
+          <div id='boutique' className='bloc' ref={refBoutique} section='boutique'>
             <Boutique />
           </div>
-          <div id='aPropos' className='bloc1' ref={refAPropos} section='aPropos'>
+          <div id='aPropos' className='bloc' ref={refAPropos} section='aPropos'>
             <APropos />
           </div>
-          <div id='contact' className='bloc0' ref={refContact} section='contact'>
+          <div id='contact' className='bloc' ref={refContact} section='contact'>
             <Contact />
           </div>
           <Footer />
         </div>
         {showScrollBtn && (
-          <FaAngleDoubleUp className='top-btn-position top-btn-style' onClick={scrollTop} /> // montrer le bouton de retour en haut.
+          <FontAwesomeIcon icon={faAngleDoubleUp} className='top-btn-position top-btn-style' onClick={scrollTop} /> // montrer le bouton de retour en haut.
         )}
       </Container>
     </>

@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Alert, Container, Form, InputGroup } from 'react-bootstrap';
-import AuthContext from '../context/AuthContext';
+import context from '../context/Context';
 import AuthService from '../service/AuthService';
 import { toast } from 'react-toastify';
 
@@ -8,7 +8,7 @@ const Login = ({ setShowLoginModal }) => {
   // déclaration des variables et constantes
   const [user, setUser] = useState({ identifiant: '', mdp: '' }); // identifiants de cnx
   const [errorMessage, setErrorMessage] = useState(''); // message d'erreur
-  const {isAuthenticated, setIsAuthenticated, setUser: setAuthUser } = useContext(AuthContext); // initialisation des etats d'authentification
+  const { isAuthenticated, setIsAuthenticated, setUser: setAuthUser } = useContext(context); // initialisation des etats d'authentification
 
   // gère les changements dans les champs du formulaire, sans recharger la page
   const handleChange = (e) => {
@@ -45,7 +45,7 @@ const Login = ({ setShowLoginModal }) => {
         localStorage.setItem('token', token); // sauvegarde du token renvoyé par le serveur
         console.log('Token saved'); // console pour tracer l'étape
         AuthService.setAxiosToken();
-        let isValid = AuthService.isValid()
+        let isValid = AuthService.isValid();
         if (isValid) {
           setIsAuthenticated(isValid);
           console.log('isAuthenticated après connexion:', isAuthenticated);
