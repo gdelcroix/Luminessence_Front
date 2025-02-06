@@ -1,19 +1,59 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Navbar, Container, Nav, Button, ToggleButton, ButtonGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
+import context from '../context/Context';
 import AuthService from '../service/AuthService';
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
 
+const NavBtn = ({ name, value, currentSection, handleSelect }) => (
+  <ToggleButton
+    className='navbar-btn align-content-center'
+    type='radio'
+    id={value}
+    value={value}
+    checked={currentSection === value}
+    onChange={handleSelect}
+  >
+    {name}
+  </ToggleButton>
+);
+
+const AuthBtn = ({ isAuthenticated, navigate, handleLogout, setShowLoginModal, setShowRegisterModal }) => (
+  <>
+    {isAuthenticated ? (
+      <div className='d-flex mx-3 px-4 align-content-end no-wrap'>
+        <Button onClick={() => navigate('/compte')} className='login-btn px-3 text-align-center align-content-center'>
+          Mon Compte
+        </Button>
+        <Button onClick={handleLogout} className='deco-btn px-3 text-align-center align-content-center'>
+          Quitter
+        </Button>
+      </div>
+    ) : (
+      <>
+        <div className='d-flex mx-3 px-4 align-content-end no-wrap'>
+          <Button className='login-btn text-align-center align-content-center' onClick={() => setShowLoginModal(true)}>
+            Se connecter
+          </Button>
+          <Button
+            className='register-btn text-align-center align-content-center'
+            onClick={() => setShowRegisterModal(true)}
+          >
+            S'Inscrire
+          </Button>
+        </div>
+      </>
+    )}
+  </>
+);
 function MyNavbar({ scrollToSection }) {
-  const { isAuthenticated, setIsAuthenticated, user, currentSection, setCurrentSection } = useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated, user, currentSection, setCurrentSection } = useContext(context);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('navbar useEffect user-role');
     if (user && Object.keys(user).length > 0) {
       console.log('il y a user !');
       if (user.role && user.role.includes('admin')) {
@@ -36,8 +76,13 @@ function MyNavbar({ scrollToSection }) {
   }, [setIsAuthenticated, setCurrentSection]);
 
   const handleLogout = () => {
-    console.log('navbar logout triggered');
     AuthService.logout(setIsAuthenticated);
+  };
+
+  const handleSelect = (e) => {
+    e.preventDefault();
+    const target = e.currentTarget.value;
+    scrollToSection(target);
   };
 
   const radios = [
@@ -50,33 +95,17 @@ function MyNavbar({ scrollToSection }) {
     { name: 'Contact', value: 'contact' },
   ];
 
-  const handleSelect = (e) => {
-    e.preventDefault();
-    const target = e.currentTarget.value;
-    scrollToSection(target);
-  };
-
   return (
     <>
       <Navbar className='HeaderContainer'>
         <Container className='d-flex justify-content-between'>
           <Navbar.Brand href='/' className='logo px-4 d-flex align-items-center'>
-            <img src='/luminessence.jpg' alt='Luminessence du savoir' style={{ height: '60px' }} />
+            <img src='/luminessence.avif' alt='Luminessence du savoir' style={{ height: '60px' }} />
           </Navbar.Brand>
           <Nav className='ms-auto d-flex align-items-center'>
             <ButtonGroup className='align-content-center'>
               {radios.map((radio, idx) => (
-                <ToggleButton
-                  className='navbar-btn align-content-center'
-                  key={idx}
-                  id={`${radio.name}`}
-                  type='radio'
-                  value={radio.value}
-                  checked={currentSection === radio.value}
-                  onChange={handleSelect}
-                >
-                  {radio.name}
-                </ToggleButton>
+                <NavBtn key={idx} {...radio} currentSection={currentSection} handleSelect={handleSelect} />
               ))}
             </ButtonGroup>
           </Nav>
