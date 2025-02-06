@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Alert, Container, Form, InputGroup, Row, Col, Button } from 'react-bootstrap';
 import { getAllUsers, inscription } from '../service/ApiCalls';
+import { toast } from 'react-toastify';
 
 const Register = ({ setShowRegisterModal }) => {
   const [user, setUser] = useState({
@@ -51,6 +52,7 @@ const Register = ({ setShowRegisterModal }) => {
       const response = await inscription(user);
       console.log(response.message);
       if (response.user) {
+        toast('création de compte réussie', )
         setShowRegisterModal(false);
       } else {
         setErrorMessage("Erreur d'enregistrement, vérifiez les champs en rouge");
@@ -183,7 +185,7 @@ const Register = ({ setShowRegisterModal }) => {
         </InputGroup>
         <Form.Control type='submit' value='Sinscrire' className='btn btn-success' />
       </Form>
-      <Button onClick={test}>Test</Button>
+       <Button onClick={test}>Test</Button> {/* // TODO a supprimer */}
     </Container>
   );
 };
