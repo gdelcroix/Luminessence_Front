@@ -1,20 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Image, Stack, Button, Carousel, Card } from 'react-bootstrap';
-import AuthContext from '../context/AuthContext';
+import context from '../context/Context';
 
 function AProposPage() {
-    const { currentSection, setCurrentSection } = useContext(AuthContext);
-  
- useEffect(() => {
-     setCurrentSection(currentSection); // TODO a configurer : les redirections
-   }, []);
+  const { currentSection, setCurrentSection } = useContext(context);
 
+  useEffect(() => {
+    setCurrentSection(currentSection); // TODO a configurer : les redirections
+  }, []);
 
+  // className='mt-1 p-0'
   return (
-    <Container fluid className='mt-1 p-0'>
-      <Row className='p-0 d-flex flex-row flex-start hero'>
-        <Col md={3} className='p-0 img'>
-          <Image className='roundedleft' src='massage0.png' alt='masseuse en action' />
+    <Container fluid>
+      <Row className='d-flex flex-start p-0 mx-5 hero'>
+        <Col md={{ span: 3 }} className='p-0 img'>
+          <Image className='roundedleft' src='massage0.avif' alt='masseuse en action' />
         </Col>
         <Col md={6} className='d-flex flex-column mx-auto justify-content-center align-items-center'>
           <Stack gap={2} className='w-100 mt-2 mx-auto'>
@@ -35,45 +35,15 @@ function AProposPage() {
           </Stack>
         </Col>
         <Col md={3} className='p-0 img'>
-          <Image className='roundedright' src='décoration_converted.avif' alt='décor zen' />
+          <Image className='roundedright' src='décoration.avif' alt='décor zen' />
         </Col>
       </Row>
-      <Row className='d-flex flex-row gap-3 p-2 justify-content-center bulle'>
-        description massages ayurvédiques :<br />
+      <Row className='d-flex flex-row gap-3 mx-5 p-3 justify-content-center bulle'>
+        BlaBla à propos de :<br />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit
       </Row>
-      <Row className='d-flex flex-row gap-3 p-2'>
-        <Col md={{ span: 8 }}>
-          <Carousel indicators={false}>
-            <Carousel.Item>
-              <img className='d-block w-100' src='massage0.png' alt='First slide' />
-              <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img className='d-block w-100' src='self hug.png' alt='Second slide' />
-              <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img className='d-block w-100' src='décoration_converted.avif' alt='Thrird slide' />
-              <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
-        </Col>
-        <Col >
-          <Row className='d-flex flex-row p-4 m-1 gap-3'>
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-            <Button variant='primary'>Go somewhere</Button>
-          </Row>
-        </Col>
+      <Row className='d-flex gap-3 mx-5'>
+        
       </Row>
     </Container>
   );

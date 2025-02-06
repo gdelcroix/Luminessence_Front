@@ -1,8 +1,7 @@
 #root {
   min-width: 90vw;
   min-height: 100vh;
-  margin: 0 auto;
-  padding: 0.5vh;
+  margin: 0.5 auto;
   text-align: center;
   background-color: #deceb3;
 }
@@ -21,16 +20,12 @@ html {
 .card{
   background-color: #c79a6c;
 }
-.bloc0 {
+.bloc {
   border-radius: 40px;
   min-height: 80vh;
   /* background-color: rgb(0, 255, 34); */
 }
-.bloc1 {
-  border-radius: 40px;
-  min-height: 80vh;
-  /* background-color: cyan; */
-}
+
 .bulle {
   border-radius: 40px !important;
   border-color: #6b5137 !important;
@@ -38,6 +33,7 @@ html {
 }
 .content-container {
   flex-grow: 1;
+  width: auto;
   overflow: auto;
 }
 .carousel-inner {

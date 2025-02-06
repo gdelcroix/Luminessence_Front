@@ -3,10 +3,10 @@ import { Container, Navbar, Nav } from 'react-bootstrap';
 
 const Footer = () => {
   return (
-    <Navbar className='FooterContainer' style={{ backgroundColor:"#6b5137"}}>
+    <Navbar className='FooterContainer' style={{ backgroundColor: '#6b5137' }}>
       <Container className='d-flex justify-content-between'>
         <Navbar.Brand href='/' className='logo d-flex align-items-center'>
-          <img src='/luminessence.jpg' alt='Luminessence du savoir' style={{ height: '40px' }} />
+          <img src='/luminessence.avif' alt='Luminessence du savoir' style={{ height: '40px' }} />
         </Navbar.Brand>
         <Nav className='ms-auto d-flex align-items-center'>
           <Nav.Link href='https://www.facebook.com' target='_blank' rel='noopener noreferrer'>

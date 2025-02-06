@@ -7,4 +7,6 @@ export default createContext({
   setUser: (value) => {},
   currentSection: null,
   setCurrentSection: (value) => {},
+  panier: [],
+  setPanier: (value) => {},
 });

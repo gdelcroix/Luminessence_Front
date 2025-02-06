@@ -1,21 +1,21 @@
 import React, { useContext, useEffect } from 'react';
 import { Button, Card, Col, Container, Image, Row, Stack } from 'react-bootstrap';
-import AuthContext from '../context/AuthContext';
+import context from '../context/Context';
 
 function Accueil({ scrollToSection }) {
-  const { currentSection, setCurrentSection } = useContext(AuthContext);
+  const { currentSection, setCurrentSection } = useContext(context);
 
   useEffect(() => {
     setCurrentSection(currentSection);
   }, []);
 
-
+  // className='mt-1 ms-0 p-0 mx-5'
   return (
     <>
-      <Container fluid className='mt-1 ms-0 p-0 mx-5'>
+      <Container fluid>
         <Row className='p-0 mx-5 d-flex flex-row flex-start hero'>
           <Col md={3} className='p-0 img'>
-            <Image className='roundedleft' src='massage0.png' alt='masseuse en action' />
+            <Image className='roundedleft' src='massage0.avif' alt='masseuse en action' />
           </Col>
           <Col md={6} className='d-flex flex-column mx-auto justify-content-center align-items-center'>
             <Stack gap={2} className='w-100 mt-2 mx-auto'>
@@ -36,7 +36,7 @@ function Accueil({ scrollToSection }) {
             </Stack>
           </Col>
           <Col md={3} className='p-0 img'>
-            <Image className='roundedright' src='décoration_converted.avif' alt='décor zen' />
+            <Image className='roundedright' src='décoration.avif' alt='décor zen' />
           </Col>
         </Row>
         <Row className='d-flex flex-row gap-3 mx-5 justify-content-between'>
@@ -51,7 +51,7 @@ function Accueil({ scrollToSection }) {
                 En savoir plus
               </Button>
             </Card.Body>
-            <Card.Img variant='top' src='image 6.png' />
+            <Card.Img variant='top' src='image-6.avif' />
           </Card>
           <Card style={{ width: '18rem' }}>
             <Card.Body>
@@ -64,7 +64,7 @@ function Accueil({ scrollToSection }) {
                 En savoir plus
               </Button>
             </Card.Body>
-            <Card.Img variant='bottom' src='image 8.png' />
+            <Card.Img variant='bottom' src='image-8.avif' />
           </Card>
           <Card style={{ width: '18rem' }}>
             <Card.Body>
@@ -77,7 +77,7 @@ function Accueil({ scrollToSection }) {
                 En savoir plus
               </Button>
             </Card.Body>
-            <Card.Img variant='bottom' src='image 7.png' />
+            <Card.Img variant='bottom' src='image-7.avif' />
           </Card>
           <Card style={{ width: '18rem' }}>
             <Card.Body>
@@ -90,7 +90,7 @@ function Accueil({ scrollToSection }) {
                 En savoir plus
               </Button>
             </Card.Body>
-            <Card.Img variant='bottom' src='image 9.png' />
+            <Card.Img variant='bottom' src='image-9.avif' />
           </Card>
         </Row>
       </Container>
