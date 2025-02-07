@@ -99,3 +99,4 @@ function Accueil({ scrollToSection }) {
 }
 
 export default Accueil;
+

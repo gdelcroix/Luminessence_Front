@@ -42,34 +42,46 @@ function MassagePage() {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit
       </Row>
       <Row className='d-flex gap-3 mx-5'>
-        <Col md={{ span: 8 }} className='p-0'>
-          <Carousel indicators={false}>
+        <Col md={8} sm={8} xs={8} className='p-0'>
+          <Carousel controls={false}>
             <Carousel.Item>
-              <div className='d-flex align-items-center'>
-                <img className='d-block w-100' src='massage0.avif' alt='First slide' />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-              </div>
+              <Row>
+                <Col md={6} sm={6} xs={6}>
+                  <img className='d-block w-100' src='massage0.avif' alt='First slide' />
+                </Col>
+                <Col md={6} sm={6} xs={6}>
+                  <span >
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                  </span>
+                </Col>
+              </Row>
             </Carousel.Item>
             <Carousel.Item>
-              <div className='d-flex align-items-center'>
-                <img className='d-block w-100' src='self-hug.avif' alt='Second slide' />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-              </div>
+              <Row>
+                <Col md={6} sm={6} xs={6}>
+                  <img className='d-block w-100' src='self-hug.avif' alt='Second slide' />
+                </Col>
+                <Col md={6} sm={6} xs={6}>
+                  <span>
+                    <h3>Second slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                  </span>
+                </Col>
+              </Row>
             </Carousel.Item>
             <Carousel.Item>
-              <div className='d-flex align-items-center'>
-                <img className='d-block w-100' src='décoration.avif' alt='Thrird slide' />
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-              </div>
+              <Row>
+                <Col md={6} sm={6} xs={6}>
+                  <img className='d-block w-100' src='décoration.avif' alt='Thrird slide' />
+                </Col>
+                <Col md={6} sm={6} xs={6}>
+                  <span>
+                    <h3>Third slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                  </span>
+                </Col>
+              </Row>
             </Carousel.Item>
           </Carousel>
         </Col>
