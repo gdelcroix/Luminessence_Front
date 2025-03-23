@@ -1,15 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Image, Stack, Button, Card } from 'react-bootstrap';
 import { tousProduits, img_url } from '../service/ApiCalls';
-import LoginModal from '../composants/LoginModal';
-import RegisterModal from '../composants/RegisterModal';
 import Context from '../context/Context';
 
 function BoutiquePage() {
   const [produits, setProduits] = useState([]); // initialisation tableau vide
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const {isAuthenticated, panier, setPanier} = useContext(Context);
+  const { panier, setPanier } = useContext(Context);
 
   useEffect(() => {
     // appel bdd pour récupérer les produits
@@ -58,7 +54,7 @@ function BoutiquePage() {
     <Container fluid>
       <Row className='d-flex flex-start p-0 mx-5 hero'>
         <Col md={3} className='p-0 img'>
-          <Image className='roundedleft' src='massage0.avif' alt='masseuse en action' />
+          <Image className='roundedLeft' src='massage0.avif' alt='masseuse en action' />
         </Col>
         <Col md={6} className='d-flex flex-column mx-auto justify-content-center align-items-center'>
           <Stack gap={2} className='w-100 mt-2 mx-auto'>
@@ -79,7 +75,7 @@ function BoutiquePage() {
           </Stack>
         </Col>
         <Col md={3} className='p-0 img'>
-          <Image className='roundedright' src='décoration.avif' alt='décor zen' />
+          <Image className='roundedRight' src='décoration.avif' alt='décor zen' />
         </Col>
       </Row>
       <Row className='d-flex flex-row gap-3 mx-5 p-3 justify-content-center bulle'>
@@ -117,9 +113,12 @@ function BoutiquePage() {
                     >
                       +
                     </Button>
-                    <Button variant='danger' size='sm' onClick={() => supprimer(produit.ID_Produit)}
-                                            style={{ marginLeft: '10px' }}
->
+                    <Button
+                      variant='danger'
+                      size='sm'
+                      onClick={() => supprimer(produit.ID_Produit)}
+                      style={{ marginLeft: '10px' }}
+                    >
                       Retirer
                     </Button>
                   </div>

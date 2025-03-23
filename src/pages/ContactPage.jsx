@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Container, Row, Col, Image, Stack, Button, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import DOMPurify from 'dompurify';
+import { formulaireContact } from '../service/ApiCalls';
 
 function Contact() {
   const [touched, setTouched] = useState({
@@ -19,14 +21,19 @@ function Contact() {
     honeypot: '',
   });
 
-  const validateInput = (input) => {
+  const validateEmail = (input) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(input);
+  };
+
+  const validateTel = (input) => {
     const phonePattern = /^\d{10}$/;
-    return emailPattern.test(input) || phonePattern.test(input);
+    console.log('regex tel :', phonePattern.test(input));
+    return phonePattern.test(input);
   };
 
   const handleChange = (e) => {
-    setFormulaire({ ...formulaire, [e.target.name]: e.target.value });
+    setFormulaire({ ...formulaire, [e.target.name]: DOMPurify.sanitize(e.target.value) });
   };
 
   const gereTouche = (e) => {
@@ -42,25 +49,26 @@ function Contact() {
     if (!formulaire.email && !formulaire.telephone) {
       toast.error('Merci de saisir au moins un contact valide');
     }
-    if (validateInput(formulaire.email) || validateInput(formulaire.telephone)) {
-      setErrorMessage(
-        'email ou téléphone manquant ou invalide, veuillez saisir une adresse mail ou numéro de téléphone valides'
-      );
-      return;
-    }
     if (!formulaire.message) {
       toast.error("merci de préciser l'objet de votre prise de contact");
       return;
+    }
+    if (!validateEmail(formulaire.email) && !validateTel(formulaire.telephone)) {
+      // si FAUX (!=not) &&(et) FAUX(! encore) = (on veut au moins un élément valide !)
+      toast.error(
+        'email et/ou téléphone manquant ou invalide, veuillez saisir une adresse mail et/ou numéro de téléphone valides'
+      );
+      return;
     } else {
-      // Envoyer le message à votre service de messagerie TODO creer le service !
-      console.log('Envoi du message:', formulaire);
-      // try {
-      //   const response = await fonctiondenvoidemessages(user);
-      //   if(response){toast.success('Message envoyé');}
-      // } catch (e) {
-      //   console.error("Erreur lors de l'envoi du message :", e);
-      //   toast.error('erreur d\'envoi');
-      // }
+      // Envoyer le message
+      try {
+        await formulaireContact(formulaire);
+        console.log('Envoi du message:', formulaire);
+        toast.success('Message envoyé');
+      } catch (e) {
+        console.error("Erreur lors de l'envoi du message :", e);
+        toast.error("erreur d'envoi");
+      }
     }
   };
 
@@ -68,7 +76,7 @@ function Contact() {
     <Container fluid>
       <Row className='d-flex flex-start p-0 mx-5 hero'>
         <Col md={3} className='p-0 img'>
-          <Image className='roundedleft' src='massage0.avif' alt='masseuse en action' />
+          <Image className='roundedLeft' src='massage0.avif' alt='masseuse en action' />
         </Col>
         <Col md={6} className='d-flex flex-column mx-auto justify-content-center align-items-center'>
           <Stack gap={2} className='w-100 mt-2 mx-auto'>
@@ -185,7 +193,7 @@ function Contact() {
           </Stack>
         </Col>
         <Col md={3} className='p-0 img'>
-          <Image className='roundedright' src='décoration.avif' alt='décor zen' />
+          <Image className='roundedRight' src='décoration.avif' alt='décor zen' />
         </Col>
       </Row>
     </Container>

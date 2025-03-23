@@ -1,14 +1,15 @@
 import { useContext, useState } from 'react';
 import { Alert, Container, Form, InputGroup } from 'react-bootstrap';
-import context from '../context/Context';
+import Context from '../context/Context';
 import AuthService from '../service/AuthService';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 const Login = ({ setShowLoginModal }) => {
   // déclaration des variables et constantes
   const [user, setUser] = useState({ identifiant: '', mdp: '' }); // identifiants de cnx
   const [errorMessage, setErrorMessage] = useState(''); // message d'erreur
-  const { isAuthenticated, setIsAuthenticated, setUser: setAuthUser } = useContext(context); // initialisation des etats d'authentification
+  const { isAuthenticated, setIsAuthenticated, setUser: setAuthUser } = useContext(Context); // initialisation des états d'authentification
 
   // gère les changements dans les champs du formulaire, sans recharger la page
   const handleChange = (e) => {
@@ -32,16 +33,16 @@ const Login = ({ setShowLoginModal }) => {
 
   // gestion de la soumission du formulaire
   const handleSubmit = async (e) => {
-    e.preventDefault(); // empèche le rechargement de la page pendant la saisie
+    e.preventDefault(); // empêche le rechargement de la page pendant la saisie
     if (!validateInput(user.identifiant)) {
       setErrorMessage('identifiant invalide, veuillez saisir votre mail ou numéro de téléphone'); // message d'erreur
       return;
     }
     try {
-      const reponse = await AuthService.login(user); // appel au service de connexion
+      const rep = await AuthService.login(user); // appel au service de connexion
 
-      if (reponse.data) {
-        let token = reponse.data.token;
+      if (rep.data) {
+        let token = rep.data.token;
         localStorage.setItem('token', token); // sauvegarde du token renvoyé par le serveur
         console.log('Token saved'); // console pour tracer l'étape
         AuthService.setAxiosToken();
@@ -97,5 +98,9 @@ const Login = ({ setShowLoginModal }) => {
     </Container>
   );
 };
+
+Login.PropTypes = {
+  setShowLoginModal: PropTypes.bool
+}
 
 export default Login;

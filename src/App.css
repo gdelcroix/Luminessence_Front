@@ -17,7 +17,7 @@ html {
 .h1 {
   font-family: 'playfair display', sans-serif;
 }
-.card{
+.card {
   background-color: #c79a6c;
 }
 .bloc {
@@ -51,13 +51,13 @@ html {
   max-width: 65vw;
 }
 
-.deco-btn{
-  color:#dc3545 ;
+.deco-btn {
+  color: #dc3545;
   background-color: #fff1c2;
   border-color: #dc3545;
 }
-.deco-btn:hover{
-  color:#fff1c2 ;
+.deco-btn:hover {
+  color: #fff1c2;
   background-color: #dc3545;
   border-color: #dc3545;
 }
@@ -106,22 +106,22 @@ html {
   color: #6b5137 !important;
   border-color: #6b5137 !important;
 }
-.roundedleft {
+.roundedLeft {
   max-width: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 40px 0 0 40px !important;
 }
-.roundedright {
+.roundedRight {
   max-width: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 0 40px 40px 0 !important;
 }
 .top-btn-position {
-position: fixed;
-bottom: 15px;
-right: 20px;
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
 }
 .top-btn-style {
   height: 40px;

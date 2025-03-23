@@ -1,20 +1,20 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Button, Card, Col, Container, Image, Row, Stack } from 'react-bootstrap';
-import context from '../context/Context';
+import Context from '../context/Context';
 
 function Estime({ scrollToSection }) {
-  const { currentSection, setCurrentSection } = useContext(context);
+  const { currentSection, setCurrentSection } = useContext(Context);
 
   useEffect(() => {
     setCurrentSection(currentSection); // TODO a configurer : les redirections
-  }, []);
+  });
 
   return (
     <>
       <Container fluid>
         <Row className='p-0 mx-5 d-flex flex-row flex-start hero'>
           <Col md={3} className='p-0 img'>
-            <Image className='roundedleft' src='massage0.avif' alt='masseuse en action' />
+            <Image className='roundedLeft' src='massage0.avif' alt='masseuse en action' />
           </Col>
           <Col md={6} className='d-flex flex-column mx-auto justify-content-center align-items-center'>
             <Stack gap={2} className='w-100 mt-2 mx-auto'>
@@ -32,7 +32,7 @@ function Estime({ scrollToSection }) {
             </Stack>
           </Col>
           <Col md={3} className='p-0 img'>
-            <Image className='roundedright' src='décoration.avif' alt='décor zen' />
+            <Image className='roundedRight' src='décoration.avif' alt='décor zen' />
           </Col>
         </Row>
         <Row className='d-flex flex-row gap-3 mx-5 justify-content-between'>
@@ -48,7 +48,7 @@ function Estime({ scrollToSection }) {
           </Card>
           <Card style={{ width: '18rem' }}>
             <Card.Body>
-              <Card.Title>L'Art de la Communication Assertive</Card.Title>
+              <Card.Title>L&apos;Art de la Communication Assertive</Card.Title>
               <Card.Text>
                 Maîtrisez des techniques pour exprimer vos idées et besoins avec assurance et respect.
               </Card.Text>
@@ -72,9 +72,9 @@ function Estime({ scrollToSection }) {
           </Card>
           <Card style={{ width: '18rem' }}>
             <Card.Body>
-              <Card.Title>Gérer le Stress et l'Anxiété pour une Meilleure Estime de Soi</Card.Title>
+              <Card.Title>Gérer le Stress et l&apos;Anxiété pour une Meilleure Estime de Soi</Card.Title>
               <Card.Text>
-                Apprenez des techniques pratiques pour réduire le stress et l'anxiété, et boostez votre confiance en
+                Apprenez des techniques pratiques pour réduire le stress et l&apos;anxiété, et boostez votre confiance en
                 vous.
               </Card.Text>
               <Button variant='primary' onClick={() => setCurrentSection('boutique')}>

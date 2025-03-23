@@ -1,12 +1,14 @@
 import { createContext } from 'react';
 
-export default createContext({
+const Context = createContext({
   isAuthenticated: false,
-  setIsAuthenticated: (value) => {},
+  setIsAuthenticated: () => {},
   user: null,
-  setUser: (value) => {},
+  setUser: () => {},
   currentSection: null,
-  setCurrentSection: (value) => {},
+  setCurrentSection: () => {},
   panier: [],
-  setPanier: (value) => {},
+  setPanier: () => {},
 });
+
+export default Context;

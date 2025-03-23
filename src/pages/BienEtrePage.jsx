@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Button, Card, Col, Container, Image, Row, Stack } from 'react-bootstrap';
-import context from '../context/Context';
+import Context from '../context/Context';
 
-function BienEtrePage({ scrollToSection }) {
-  const { currentSection, setCurrentSection } = useContext(context);
+function BienEtrePage() {
+  const { currentSection, setCurrentSection } = useContext(Context);
 
   useEffect(() => {
     setCurrentSection(currentSection); // TODO a configurer : les redirections des boutons
-  }, []);
+  });
 
   // className='mt-1 ms-0 p-0 mx-5'
   return (
@@ -15,7 +15,7 @@ function BienEtrePage({ scrollToSection }) {
       <Container fluid>
         <Row className='p-0 mx-5 d-flex flex-row flex-start hero'>
           <Col md={3} className='p-0 img'>
-            <Image className='roundedleft' src='massage0.avif' alt='masseuse en action' />
+            <Image className='roundedLeft' src='massage0.avif' alt='masseuse en action' />
           </Col>
           <Col md={6} className='d-flex flex-column mx-auto justify-content-center align-items-center'>
             <Stack gap={2} className='w-100 mt-2 mx-auto'>
@@ -33,7 +33,7 @@ function BienEtrePage({ scrollToSection }) {
             </Stack>
           </Col>
           <Col md={3} className='p-0 img'>
-            <Image className='roundedright' src='décoration.avif' alt='décor zen' />
+            <Image className='roundedRight' src='décoration.avif' alt='décor zen' />
           </Col>
         </Row>
         <Row className='d-flex flex-row gap-3 mx-5 justify-content-between'>
@@ -80,7 +80,7 @@ function BienEtrePage({ scrollToSection }) {
             <Card.Body>
               <Card.Title>Création de Masques pour le Visage</Card.Title>
               <Card.Text>
-                Maîtrisez l'art de concevoir des masques visage personnalisés pour un teint éclatant et une peau
+                Maîtrisez l&apos;art de concevoir des masques visage personnalisés pour un teint éclatant et une peau
                 nourrie.
               </Card.Text>
               <Button variant='primary' onClick={() => setCurrentSection('boutique')}>

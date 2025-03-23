@@ -19,7 +19,7 @@ const RegisterModal = ({ show, onHide, setShowRegisterModal }) => {
     </Modal>
   );
 };
-
+// les propTypes permettent de confirmer le type de données facilement, et de documenter le type de variable attendu
 RegisterModal.propTypes = {
   show: PropTypes.bool,
   onHide: PropTypes.func,

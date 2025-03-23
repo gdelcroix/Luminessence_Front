@@ -1,37 +1,44 @@
 import { useEffect, useState } from 'react';
 
-export function useIsVisible(ref, setCurrentSection = () => {}, isObserverActive = true, onOffsetTopChange = () => {}) {
-  const [isIntersecting, setIntersecting] = useState(false);
+export function useIsVisible(
+  refs,
+  setCurrentSection = () => {},
+  isObserverActive = true,
+  onOffsetTopChange = () => {}
+) {
+  const [isVisible, setIsVisible] = useState({});
 
   useEffect(() => {
     if (!isObserverActive) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.target) {
-          if (entry.isIntersecting) {
-            setCurrentSection(entry.target.id); // Mettre à jour currentSection dans le contexte
-            if (entry.target.offsetTop > 300) {
-              onOffsetTopChange(true);
-            } else {
-              onOffsetTopChange(false);
+    const observers = refs.map((ref) => {
+      if (!ref.current) return null;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.target) {
+            setIsVisible((prev) => ({
+              ...prev,
+              [entry.target.id]: entry.isIntersecting,
+            }));
+
+            if (entry.isIntersecting) {
+              setCurrentSection(entry.target.id); // Mettre à jour currentSection dans le contexte
+              onOffsetTopChange(entry.target.offsetTop > 300);
             }
           }
-          setIntersecting(entry.isIntersecting);
-        }
-      },
-      { threshold: 0.2 }
-    ); // Ajustez le seuil
+        },
+        { threshold: 0.2 } // Ajuster le seuil pour modifier le début du défilement
+      );
 
-    if (ref.current) {
       observer.observe(ref.current);
-    }
+      return observer;
+    });
 
     return () => {
-      observer.disconnect();
+      observers.forEach((observer) => observer && observer.disconnect());
     };
-  }, [ref, setCurrentSection, isObserverActive]);
+  }, [refs, setCurrentSection, isObserverActive, onOffsetTopChange]);
 
-  return isIntersecting;
+  return isVisible;
 }
-
